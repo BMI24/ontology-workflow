@@ -1,0 +1,8 @@
+services:
+  widoco:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/usr/local/widoco/in:Z
+      - /var/www/html/onto/:/usr/local/widoco/out:Z

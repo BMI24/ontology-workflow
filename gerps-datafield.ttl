@@ -1,0 +1,602 @@
+@prefix : <https://w3id.org/gerps/ontology/datafield/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix gpp: <https://w3id.org/gerps/ontology/process/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix terms: <http://purl.org/dc/terms/> .
+@prefix schema: <https://schema.org/> .
+@base <https://w3id.org/gerps/ontology/datafield/> .
+
+<https://w3id.org/gerps/ontology/datafield/> rdf:type owl:Ontology ;
+                                                   owl:versionIRI <https://w3id.org/gerps/ontology/datafield/1.0/> ;
+                                                   owl:imports <http://elite.polito.it/ontologies/eupont.owl> ,
+                                                               gpp: ;
+                                                   terms:abstract "Ontologie für den Transfer von FIM(Föderales Informationsmanagement)-Informationen, insbesondere von Formularen, und den darin gespeicherten Daten , die von der öffentlichen Verwaltung verwendet wird um Dienste anzubieten. Zu diesem Zweck bildet die Ontologie den XDatenfeld-Standard ab."@de ,
+                                                                  "Ontology used for transferring FIM(Federal Information Management)-information, specifically forms, and data stored in them, used by public services. To achieve this, it maps the XDatenfeld-standard."@en ;
+                                                   terms:contributor "Heinz Conti Zacherl" ,
+                                                                     "Jonas Hoyer" ,
+                                                                     "Leila Feddoul" ,
+                                                                     "Maximilian Enderling" ,
+                                                                     "Maximilian Raupach" ;
+                                                   terms:creator "openDVA" ;
+                                                   terms:license <http://creativecommons.org/licenses/by/4.0/> ;
+                                                   terms:modified "20 Dec, 2024" ;
+                                                   terms:title "GerPS-Datafield"@en ,
+                                                               "GerPS-Datenfelder"@de ;
+                                                   vann:preferredNamespacePrefix "god"@en ;
+                                                   vann:preferredNamespaceUri "https://w3id.org/gerps/ontology/datafield" ;
+                                                   owl:priorVersion <https://w3id.org/gerps/ontology/datafield/0.9/> ;
+                                                   owl:versionInfo "1.0" ;
+                                                   schema:citation "Cite this vocabulary as: openDVA, GerPS-Datafield"@en ,
+                                                                   "Zitieren Sie dieses Vokabular als: openDVA, GerPS-Datafield"@de ;
+                                                   schema:image "img.png" ;
+                                                   dct:description ""@de ,
+                                                                   ""@en .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/abstract
+terms:abstract rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/creator
+terms:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+terms:description rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+terms:license rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+terms:title rdf:type owl:AnnotationProperty .
+
+
+###  https://schema.org/citation
+schema:citation rdf:type owl:AnnotationProperty .
+
+
+###  https://w3id.org/gerps/ontology/datafield/JA000001
+:GPD_0000031 rdf:type owl:AnnotationProperty ;
+          rdfs:comment "Der Name des Autoren."@de ,
+                       "The name of the author."@en ;
+          rdfs:label "has author"@en ,
+                     "hat Autor"@de ;
+          rdfs:domain :GPD_0000002 .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://w3id.org/gerps/ontology/datafield/JP000002
+:GPD_0000032 rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf :GPD_0000042 ;
+          rdfs:domain :GPD_0000018 ;
+          rdfs:range :GPD_0000009 ;
+          rdfs:comment "Links a Boolean operator with its left operands."@en ,
+                       "Verknüpft einen booleschen Operator mit seinem linken Operanden."@de ;
+          rdfs:label "has left operand"@en ,
+                     "hat linken Operanden"@de .
+
+
+###  https://w3id.org/gerps/ontology/datafield/JP000003
+:GPD_0000033 rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf :GPD_0000042 ;
+          rdfs:domain :GPD_0000018 ;
+          rdfs:range :GPD_0000009 ;
+          rdfs:comment "Connects a `LogicOperation` with its right `Condition`."@en ,
+                       "Verknüpft einen booleschen Operator mit seinem rechten Operanden."@de ;
+          rdfs:label "has right operand"@en ,
+                     "hat rechten Operanden"@de .
+
+
+###  https://w3id.org/gerps/ontology/datafield/JP000004
+:GPD_0000034 rdf:type owl:ObjectProperty ,
+                   owl:TransitiveProperty ;
+          rdfs:domain :GPD_0000008 ;
+          rdfs:range :GPD_0000008 ;
+          rdfs:comment "Links datafield element actions that run in sequence together."@en ,
+                       "Verknüpft Aktionen von Datenfeldelementen, die nacheinander ablaufen, miteinander."@de ;
+          rdfs:label "has next action"@en ,
+                     "hat Folgeaktion"@de .
+
+
+###  https://w3id.org/gerps/ontology/datafield/JP000005
+:GPD_0000035 rdf:type owl:ObjectProperty ;
+          rdfs:domain [ rdf:type owl:Class ;
+                        owl:unionOf ( :GPD_0000002
+                                      :GPD_0000003
+                                    )
+                      ] ;
+          rdfs:range :GPD_0000001 ;
+          rdfs:comment "Links datafield elements to contained datafield rules."@en ,
+                       "Verknüpft Datenfeldelemente mit enthaltenen Datenfeldregeln."@de ;
+          rdfs:label "contains rule"@en ,
+                     "enthält Regel"@de .
+
+
+###  https://w3id.org/gerps/ontology/datafield/JP000006
+:GPD_0000036 rdf:type owl:ObjectProperty ;
+          rdfs:domain :GPD_0000021 ;
+          rdfs:range :GPD_0000004 ;
+          rdfs:comment "Links datafield comparisons to the datafield elements they reference."@en ,
+                       "Verknüpft Datenfeldvergleiche mit den Datenfeldelementen, auf die sie verweisen."@de ;
+          rdfs:label "compares with"@en ,
+                     "vergleicht mit"@de .
+
+
+###  https://w3id.org/gerps/ontology/datafield/JP000008
+:GPD_0000038 rdf:type owl:ObjectProperty ;
+          rdfs:domain :GPD_0000008 ;
+          rdfs:range :GPD_0000003 ;
+          rdfs:comment "Links a datafield element action with the datafield element it targets."@en ,
+                       "Verknüpft eine Datenfeldelement-Aktion mit dem Datenfeldelement, auf das sie wirkt."@de ;
+          rdfs:label "modifies datafield element"@en ,
+                     "verändert Datenfeldelement"@de .
+
+
+###  https://w3id.org/gerps/ontology/datafield/JP000010
+:GPD_0000040 rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf owl:topObjectProperty ;
+          rdfs:domain [ rdf:type owl:Class ;
+                        owl:unionOf ( :GPD_0000002
+                                      :GPD_0000003
+                                    )
+                      ] ;
+          rdfs:range :GPD_0000029 ;
+          rdfs:comment "Links a datafield element to its instances."@en ,
+                       "Verknüpft ein Datenfeldelement mit seinen Instanzen."@de ;
+          rdfs:label "contains datafield element instance"@en ,
+                     "enthält Datenfeldinstanz"@de .
+
+
+###  https://w3id.org/gerps/ontology/datafield/JP000011
+:GPD_0000041 rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf owl:topObjectProperty ;
+          rdfs:domain :GPD_0000029 ;
+          rdfs:range :GPD_0000003 ;
+          rdfs:comment "Links a data field element instance to the data field element whose instance it is."@en ,
+                       "Verknüpft eine Datenfeldelementinstanz mit dem Datenfeldelement, dessen Instanz es ist."@de ;
+          rdfs:label "is instance of"@en ,
+                     "ist Instanz von"@de .
+
+
+###  https://w3id.org/gerps/ontology/datafield/JP000012
+:GPD_0000042 rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf owl:topObjectProperty ;
+          rdfs:comment "Links a Boolean operator with both of its operands."@en ,
+                       "Verknüpft einen booleschen Operator mit seinen beiden Operanden."@de ;
+          rdfs:label "has operand"@en ,
+                     "hat Operanden"@de .
+
+
+###  https://w3id.org/gerps/ontology/process/GERPSP001
+gpp:GPP_0000021 rdf:type owl:ObjectProperty .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://w3id.org/gerps/ontology/datafield/JD000001
+:GPD_0000043 rdf:type owl:DatatypeProperty ;
+          rdfs:domain :GPD_0000001 ;
+          rdfs:range rdf:langString ;
+          rdfs:comment "Die Beschreibung einer FIM-Datenfeldregel."@de ,
+                       "The description of a FIM datafield rule."@en ;
+          rdfs:label "has description"@en ,
+                     "hat Beschreibung"@de .
+
+
+###  https://w3id.org/gerps/ontology/datafield/JD000002
+:GPD_0000044 rdf:type owl:DatatypeProperty ;
+          rdfs:domain :GPD_0000003 ;
+          rdfs:range rdf:langString ;
+          rdfs:comment "Erläuternder Hilfetext für den Formularanwender (Bürger/Unternehmen) eines Input-Dokuments, um zu verdeutlichen, welche Inhalte in einer Datenfeldgruppe einzugeben sind bzw. welche Aktion vorzunehmen ist."@de ,
+                       "Explanatory help text for the form user (citizen/company) of an input document to clarify which content is to be entered in a data field group or which action is to be performed."@en ;
+          rdfs:label "has input help text"@en ,
+                     "hat Hilfetexteingabe"@de .
+
+
+###  https://w3id.org/gerps/ontology/datafield/JD000003
+:GPD_0000045 rdf:type owl:DatatypeProperty ;
+          rdfs:domain :GPD_0000003 ;
+          rdfs:range rdf:langString ;
+          rdfs:comment "Erläuternder Hilfetext für den Formularanwender (Bürger/Unternehmen) eines Output-Dokuments."@de ,
+                       "Explanatory help text for the form user (citizen/company) of an output document."@en ;
+          rdfs:label "has output help text"@en ,
+                     "hat Hilfetextausgabe"@de .
+
+
+###  https://w3id.org/gerps/ontology/datafield/JD000004
+:GPD_0000046 rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf owl:topDataProperty ;
+          rdfs:comment "Art des Datenfelds, etwa \"Eingabe\" oder \"Auswahl\". Gültige Werte kann man nachschlagen:  https://www.xrepository.de/api/xrepository/urn:xoev-de:fim:standard:xdatenfelder_3.0.0:dokument:XDatenfelder_3.0.0_Spezifikation IV.B.1.6 Codeliste Datenfeldart"@de ,
+                       "Type of data field, such as “input” or “select”. Valid values can be looked up at: https://www.xrepository.de/api/xrepository/urn:xoev-de:fim:standard:xdatenfelder_3.0.0:dokument:XDatenfelder_3.0.0_Spezifikation IV.B.1.6 Codeliste Datenfeldart"@en ;
+          rdfs:label "has field type"@en ,
+                     "hat Feldart"@de .
+
+
+###  https://w3id.org/gerps/ontology/datafield/JD000005
+:GPD_0000047 rdf:type owl:DatatypeProperty ;
+          rdfs:domain :GPD_0000004 ;
+          rdfs:range xsd:string ;
+          rdfs:comment """Der Datentyp bezeichnet die Zusammenfassung konkreter Wertebereiche und ggf. darauf definierten Operationen
+zu einer Einheit, die mithilfe von Regeln abbildbar sind. Zudem spezifiziert der Datentyp die Struktur des Inhalts
+oder gibt Aufschlüsse über die Feldinhaltsänderbarkeit. Die Bedeutung kann in https://www.xrepository.de/api/xrepository/urn:xoev-de:fim:standard:xdatenfelder_3.0.0:dokument:XDatenfelder_3.0.0_Spezifikation IV.B.1.7 Codeliste Datenfeldtyp nachgeschlagen werden."""@de ,
+                       """The data type describes the combination of concrete value ranges and any operations defined on them
+to form a unit that can be mapped using rules. The data type also specifies the structure of the content
+or provides information about the field content changeability. The valid values can be found in  https://www.xrepository.de/api/xrepository/urn:xoev-de:fim:standard:xdatenfelder_3.0.0:dokument:XDatenfelder_3.0.0_Spezifikation IV.B.1.7 Codeliste Datenfeldtyp."""@en ;
+          rdfs:label "has datatype"@en ,
+                     "hat Datentyp"@de .
+
+
+###  https://w3id.org/gerps/ontology/datafield/JD000006
+:GPD_0000048 rdf:type owl:DatatypeProperty ;
+          rdfs:domain :GPD_0000004 ;
+          rdfs:range rdf:langString ;
+          rdfs:comment "Mit der Präzisierung kann der Datentyp weiter eingeschänkt werden. Es sind Beschränkungen der Länge und des Wertebereichs möglich."@de ,
+                       "The data type can be further restricted with the specification. Restrictions on the length and value range are possible."@en ;
+          rdfs:label "has further specification"@en ,
+                     "hat Präzisierung"@de .
+
+
+###  https://w3id.org/gerps/ontology/datafield/JD000007
+:GPD_0000049 rdf:type owl:DatatypeProperty ;
+          rdfs:domain :GPD_0000003 ;
+          rdfs:range rdf:langString ;
+          rdfs:comment "Specifies a predefined (default) value for the content of a form field."@en ,
+                       "Spezifiziert einen vordefinierter (Standard-)Wert den Inhalt eines Formularfeldes."@de ;
+          rdfs:label "has content"@en ,
+                     "hat Inhalt"@de .
+
+
+###  https://w3id.org/gerps/ontology/datafield/JD000008
+:GPD_0000050 rdf:type owl:DatatypeProperty ;
+          rdfs:domain :GPD_0000004 ;
+          rdfs:range xsd:string ;
+          rdfs:comment "Gibt an, ob die Behörde das Feld vorbefüllen kann oder muss."@de ,
+                       "Indicates whether the authority can or must pre-fill the field."@en ;
+          rdfs:label "has prefilling"@en ,
+                     "hat Vorbefüllung"@de .
+
+
+###  https://w3id.org/gerps/ontology/datafield/JD000009
+:GPD_0000051 rdf:type owl:DatatypeProperty ;
+          rdfs:domain :GPD_0000004 ;
+          rdfs:range xsd:string ;
+          rdfs:comment "Reference to a code list whose values the field can accept."@en ,
+                       "Referenz auf eine Codeliste, deren Werte das Feld annehmen kann."@de ;
+          rdfs:label "has codelist reference"@en ,
+                     "hat Codelistenreferenz"@de .
+
+
+###  https://w3id.org/gerps/ontology/datafield/JD000010
+:GPD_0000052 rdf:type owl:DatatypeProperty ;
+          rdfs:domain :GPD_0000004 ;
+          rdfs:range xsd:string ;
+          rdfs:comment "Diese Eigenschaft darf nur bei Datenfeldern des Typs \"file\" verwendet werden. Sie listet die erlaubten Dateiarten gemäß der Media Type Registry der IANA auf. Beispiel: \"application/pdf\" für PDF."@de ,
+                       "This property may only be used for data fields of type “file”. It lists the permitted file types according to the IANA Media Type Registry. Example: “application/pdf” for PDF."@en ;
+          rdfs:label "has mediatype"@en ,
+                     "hat Medientyp"@de .
+
+
+###  https://w3id.org/gerps/ontology/datafield/JD000011
+:GPD_0000053 rdf:type owl:DatatypeProperty ;
+          rdfs:domain :GPD_0000004 ;
+          rdfs:range xsd:string ;
+          rdfs:comment """Diese Eigenschaft darf nur bei Datenfeldern des Typs \"file\" verwendet werden. Sie legt die Maximalgröße in Byte fest."""@de ,
+                       "This property may only be used for data fields of type “file”. It defines the maximum size in bytes."@en ;
+          rdfs:label "has max size"@en ,
+                     "hat maximale Größe"@de .
+
+
+###  https://w3id.org/gerps/ontology/datafield/JD000012
+:GPD_0000054 rdf:type owl:DatatypeProperty ,
+                   owl:FunctionalProperty ;
+          rdfs:domain [ rdf:type owl:Class ;
+                        owl:unionOf ( :GPD_0000002
+                                      :GPD_0000003
+                                    )
+                      ] ;
+          rdfs:range xsd:string ;
+          rdfs:comment "Die Version des Datenfeldelements."@de ,
+                       "The version of the data field element."@en ;
+          rdfs:label "has version"@en ,
+                     "hat Version"@de .
+
+
+###  https://w3id.org/gerps/ontology/datafield/JD000015
+:GPD_0000055 rdf:type owl:DatatypeProperty ;
+          rdfs:domain :GPD_0000029 ;
+          rdfs:range xsd:string ;
+          rdfs:comment "Die Anzahl definiert, wie oft die Datenfeldinstanz minimal auftreten darf."@de ,
+                       "The number defines the minimum number of times the datafield instance may occur."@en ;
+          rdfs:label "has min occurrence"@en ,
+                     "hat minimales Auftauchen"@de .
+
+
+###  https://w3id.org/gerps/ontology/datafield/JD000016
+:GPD_0000056 rdf:type owl:DatatypeProperty ;
+          rdfs:domain :GPD_0000029 ;
+          rdfs:range xsd:string ;
+          rdfs:comment "Die Anzahl definiert, wie oft die Datenfeldinstanz maximal auftreten darf."@en ,
+                       "The number defines the maximum number of times the datafield instance may occur."@en ;
+          rdfs:label "has max occurrence"@en ,
+                     "hat maximales Auftauchen"@de .
+
+
+###  https://w3id.org/gerps/ontology/process/GERPSP012
+gpp:GPP_0000028 rdf:type owl:DatatypeProperty .
+
+
+###  https://www.irit.fr/recherches/MELODI/ontologies/BBO#name
+<https://www.irit.fr/recherches/MELODI/ontologies/BBO#name> rdf:type owl:DatatypeProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://elite.polito.it/ontologies/eupont.owl#Rule
+<http://elite.polito.it/ontologies/eupont.owl#Rule> rdf:type owl:Class .
+
+
+###  https://w3id.org/gerps/ontology/datafield/J000001
+:GPD_0000001 rdf:type owl:Class ;
+         rdfs:subClassOf <http://elite.polito.it/ontologies/eupont.owl#Rule> ;
+         rdfs:comment "A rule used to evaluate boolean expressions on dynamic forms in XDatenfeld."@en ,
+                      "Eine Regel zur Auswertung boolescher Ausdrücke auf dynamischen Formularen in XDatenfeld."@de ;
+         rdfs:label "Datafield rule"@en ,
+                    "Datenfeldregel"@de .
+
+
+###  https://w3id.org/gerps/ontology/datafield/J000002
+:GPD_0000002 rdf:type owl:Class ;
+         rdfs:subClassOf gpp:GPP_0000008 ;
+         rdfs:comment "A form as specified by the XDatenfeld standard."@en ,
+                      "Ein Formular, wie es im XDatenfeld-Standard spezifiziert ist."@de ;
+         rdfs:label "Master dataschema"@en ,
+                    "Stammdatenschemata"@de .
+
+
+###  https://w3id.org/gerps/ontology/datafield/J000003
+:GPD_0000003 rdf:type owl:Class ;
+         rdfs:subClassOf gpp:GPP_0000008 ;
+         rdfs:comment "Bausteine der von XDatenfeld spezifizierten Formulare."@de ,
+                      "Building blocks of forms specified by XDatenfeld."@en ;
+         rdfs:label "Datafield element"@en ,
+                    "Datenfeldelement"@de .
+
+
+###  https://w3id.org/gerps/ontology/datafield/J000004
+:GPD_0000004 rdf:type owl:Class ;
+         rdfs:subClassOf :GPD_0000003 ;
+         rdfs:comment "Der kleinste Baustein von Formularen, wie er in XDatenfeld spezifiziert ist. Er enthält Daten."@de ,
+                      "The smallest building block of forms as specified in XDatenfeld. It contains data directly."@en ;
+         rdfs:label "Datafield"@en ,
+                    "Datenfeld"@de .
+
+
+###  https://w3id.org/gerps/ontology/datafield/J000005
+:GPD_0000005 rdf:type owl:Class ;
+         rdfs:subClassOf :GPD_0000003 ;
+         rdfs:comment "A building block of forms as specified in XDatenfeld. It may contain datafield elements and/or rules."@en ,
+                      "Ein Baustein von Formularen, wie in XDatenfeld spezifiziert. Er kann Datenfeldelemente und/oder Regeln enthalten."@de ;
+         rdfs:label "Datafield group"@en ,
+                    "Datenfeldgruppe"@de .
+
+
+###  https://w3id.org/gerps/ontology/datafield/J000006
+:GPD_0000006 rdf:type owl:Class ;
+         rdfs:subClassOf <http://elite.polito.it/ontologies/eupont.owl#InstantiatedAction> ;
+         rdfs:comment "An action that enables dynamic forms based on XDatenfeld."@en ,
+                      "Eine Aktion, die dynamische Formulare auf der Grundlage von XDatenfeld ermöglicht."@de ;
+         rdfs:label "Datenfeldaktion"@de ,
+                    "datafield action"@en .
+
+
+###  https://w3id.org/gerps/ontology/datafield/J000007
+:GPD_0000007 rdf:type owl:Class ;
+         rdfs:subClassOf <http://elite.polito.it/ontologies/eupont.owl#InstantiatedTrigger> ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty <http://elite.polito.it/ontologies/eupont.owl#nominalTrigger> ;
+                           owl:allValuesFrom :GPD_0000009
+                         ] ;
+         rdfs:comment "A instantiated trigger that only triggers when a condition on a datafield ist triggered."@en ,
+                      "Ein instanziierter Trigger, der nur ausgelöst wird, wenn eine Bedingung auf einem Datenfeld ausgelöst wird."@de ;
+         rdfs:label "Bedingter Trigger"@de ,
+                    "Conditional trigger"@en .
+
+
+###  https://w3id.org/gerps/ontology/datafield/J000008
+:GPD_0000008 rdf:type owl:Class ;
+         rdfs:subClassOf <http://elite.polito.it/ontologies/eupont.owl#Action> ;
+         rdfs:comment "An action that manipulates the state of dynamic forms modeled in XDatenfeld."@en ,
+                      "Eine Aktion, die den Zustand der in XDatenfeld modellierten dynamischen Formulare manipuliert."@de ;
+         rdfs:label "Datafield element action"@en ,
+                    "Datenfeldelement Aktion"@de .
+
+
+###  https://w3id.org/gerps/ontology/datafield/J000009
+:GPD_0000009 rdf:type owl:Class ;
+         rdfs:subClassOf <http://elite.polito.it/ontologies/eupont.owl#Trigger> ;
+         rdfs:comment "Logical formular, composed of comparisons and boolean combinators."@en ,
+                      "Logische Formeln, die aus Vergleichen und boolschen Kombinatoren bestehen."@de ;
+         rdfs:label "Bedingung"@de ,
+                    "Condition"@en .
+
+
+###  https://w3id.org/gerps/ontology/datafield/J000011
+:GPD_0000011 rdf:type owl:Class ;
+         rdfs:subClassOf :GPD_0000008 ;
+         rdfs:comment "Action that sets the requirement of the data field element."@en ,
+                      "Aktion, die die Erfordernis von Datenfeldelement bestimmt."@de ;
+         rdfs:label "Pflichtaktion"@de ,
+                    "required action"@en .
+
+
+###  https://w3id.org/gerps/ontology/datafield/J000012
+:GPD_0000012 rdf:type owl:Class ;
+         rdfs:subClassOf :GPD_0000011 ;
+         rdfs:comment "Action that marks a data field element as not being required."@en ,
+                      "Aktion, die ein Datenfeldelement als nicht erfordert markiert."@de ;
+         rdfs:label "Pflicht deaktivieren"@de ,
+                    "turn required off"@en .
+
+
+###  https://w3id.org/gerps/ontology/datafield/J000014
+:GPD_0000014 rdf:type owl:Class ;
+         rdfs:subClassOf :GPD_0000011 ;
+         rdfs:comment "Action that marks a data field element as being required."@en ,
+                      "Aktion, die ein Datenfeldelement als erfordert markiert."@de ;
+         rdfs:label "Pflicht aktivieren"@de ,
+                    "turn required on"@en .
+
+
+###  https://w3id.org/gerps/ontology/datafield/J000015
+:GPD_0000015 rdf:type owl:Class ;
+         rdfs:subClassOf :GPD_0000008 ;
+         rdfs:comment "Action that controls the visibility on a datafield element."@en ,
+                      "Aktion, die die Sichtbarkeit für ein Datenfeldelement kontrolliert."@de ;
+         rdfs:label "Sichtbarkeitsaktion"@de ,
+                    "visibility action"@en .
+
+
+###  https://w3id.org/gerps/ontology/datafield/J000016
+:GPD_0000016 rdf:type owl:Class ;
+         rdfs:subClassOf :GPD_0000015 ;
+         rdfs:comment "Action that enables the visibility on a datafield element."@en ,
+                      "Aktion, die die Sichtbarkeit für ein Datenfeldelement aktiviert."@de ;
+         rdfs:label "Disable visibility"@en ,
+                    "Sichtbarkeit anschalten"@de .
+
+
+###  https://w3id.org/gerps/ontology/datafield/J000017
+:GPD_0000017 rdf:type owl:Class ;
+         rdfs:subClassOf :GPD_0000015 ;
+         rdfs:comment "Action that disables the visibility on a datafield element."@en ,
+                      "Aktion, die die Sichtbarkeit eines Datenfeldelements deaktiviert."@de ;
+         rdfs:label "Enable visibility"@en ,
+                    "Sichtbarkeit ausschalten"@de .
+
+
+###  https://w3id.org/gerps/ontology/datafield/J000018
+:GPD_0000018 rdf:type owl:Class ;
+         rdfs:subClassOf :GPD_0000009 ;
+         rdfs:comment "Used for combining boolean expressions."@en ,
+                      "Wird für die Kombination boolscher Ausdrücke verwendet."@de ;
+         rdfs:label "Boolean logic operation"@en ,
+                    "Boolsche Logikoperation"@de .
+
+
+###  https://w3id.org/gerps/ontology/datafield/J000019
+:GPD_0000019 rdf:type owl:Class ;
+         rdfs:subClassOf :GPD_0000018 ;
+         rdfs:comment "Class representing the boolean AND operation."@en ,
+                      "Klasse, die die boolsche UND-Verknüpfung darstellt."@de ;
+         rdfs:label "Logical \"and\""@en ,
+                    "Logisches \"und\""@de .
+
+
+###  https://w3id.org/gerps/ontology/datafield/J000020
+:GPD_0000020 rdf:type owl:Class ;
+         rdfs:subClassOf :GPD_0000018 ;
+         rdfs:comment "Class representing the boolean OR operation."@en ,
+                      "Klasse, die die boolsche UND-Verknüpfung darstellt."@de ;
+         rdfs:label "Logical \"or\""@en ,
+                    "Logisches \"oder\""@de .
+
+
+###  https://w3id.org/gerps/ontology/datafield/J000021
+:GPD_0000021 rdf:type owl:Class ;
+         rdfs:subClassOf :GPD_0000009 ;
+         rdfs:comment "Diese Klasse stellt logische Ausdrücke dar, die einen booleschen Wert ergeben, indem ein Datenfeldwert mit einem bestimmten Wert verglichen wird."@de ,
+                      "This class represents logical expressions which evaluate to a boolean value by comparing a datafield value to a specific value."@en ;
+         rdfs:label "Datafield comparison"@en ,
+                    "Datenfeldvergleich"@de .
+
+
+###  https://w3id.org/gerps/ontology/datafield/J000022
+:GPD_0000022 rdf:type owl:Class ;
+         rdfs:subClassOf :GPD_0000021 ;
+         rdfs:comment "Diese Klasse stellt logische Ausdrücke dar, die zu einem booleschen Wert ausgewertet werden, indem geprüft wird, ob ein Datenfeld den gleichen Wert wie ein konstanter Wert hat."@de ,
+                      "This class represents logical expression which evaluate to a boolean value by checking if a datafield has the same value as a constant value."@en ;
+         rdfs:label "Datafield comparison equals"@en ,
+                    "Datenfeldvergleich gleich"@de .
+
+
+###  https://w3id.org/gerps/ontology/datafield/J000023
+:GPD_0000023 rdf:type owl:Class ;
+         rdfs:subClassOf :GPD_0000021 ;
+         rdfs:comment "Diese Klasse stellt logische Ausdrücke dar, die zu einem booleschen Wert ausgewertet werden, indem geprüft wird, ob ein Datenfeld den nicht gleichen Wert wie ein konstanter Wert hat."@de ,
+                      "This class represents logical expression which evaluate to a boolean value by checking if a datafield has a different value as a constant value."@en ;
+         rdfs:label "Datafield comparison not equals"@en ,
+                    "Datenfeldvergleich ungleich"@de .
+
+
+###  https://w3id.org/gerps/ontology/datafield/J000024
+:GPD_0000024 rdf:type owl:Class ;
+         rdfs:subClassOf :GPD_0000021 ;
+         rdfs:comment "Diese Klasse stellt logische Ausdrücke dar, die einen booleschen Wert ergeben, indem geprüft wird, ob ein Datenfeld einen höheren Wert als einen konstanten Wert hat."@de ,
+                      "This class represents logical expression which evaluate to a boolean value by checking if a datafield has a higher value than a constant value."@en ;
+         rdfs:label "Datafield comparison greater than"@en ,
+                    "Datenfeldvergleich größer als"@de .
+
+
+###  https://w3id.org/gerps/ontology/datafield/J000025
+:GPD_0000025 rdf:type owl:Class ;
+         rdfs:subClassOf :GPD_0000021 ;
+         rdfs:comment "Diese Klasse stellt logische Ausdrücke dar, die zu einem booleschen Wert ausgewertet werden, indem geprüft wird, ob ein Datenfeld einen höheren oder gleichen Wert hat wie ein konstanter Wert."@de ,
+                      "This class represents logical expression which evaluate to a boolean value by checking if a datafield has a higher or equal value than a constant value."@en ;
+         rdfs:label "Datafield comparison greater equals"@en ,
+                    "Datenfeldvergleich größer gleich"@de .
+
+
+###  https://w3id.org/gerps/ontology/datafield/J000026
+:GPD_0000026 rdf:type owl:Class ;
+         rdfs:subClassOf :GPD_0000021 ;
+         rdfs:comment "Diese Klasse stellt logische Ausdrücke dar, die einen booleschen Wert ergeben, indem geprüft wird, ob ein Datenfeld einen niedrigeren Wert als einen konstanten Wert hat."@de ,
+                      "This class represents logical expression which evaluate to a boolean value by checking if a datafield has a lower value than a constant value."@en ;
+         rdfs:label "Datafield comparison lower than"@en ,
+                    "Datenfeldvergleich kleiner als"@de .
+
+
+###  https://w3id.org/gerps/ontology/datafield/J000027
+:GPD_0000027 rdf:type owl:Class ;
+         rdfs:subClassOf :GPD_0000021 ;
+         rdfs:comment "Diese Klasse stellt logische Ausdrücke dar, die zu einem booleschen Wert ausgewertet werden, indem geprüft wird, ob ein Datenfeld einen niedrigeren oder gleichen Wert hat wie ein konstanter Wert."@de ,
+                      "This class represents logical expression which evaluate to a boolean value by checking if a datafield has a lower or equal value than a constant value."@en ;
+         rdfs:label "Datafield comparison lower equals"@en ,
+                    "Datenfeldvergleich kleiner gleich"@de .
+
+
+###  https://w3id.org/gerps/ontology/datafield/J000029
+:GPD_0000029 rdf:type owl:Class ;
+         rdfs:comment "An instance of a datafield element in a form, also allowing for multiple (repeated) instances of the same element."@en ,
+                      "Eine Instanz eines Datenfeldelements in einem Formular, wobei auch mehrere (wiederholte) Instanzen desselben Elements möglich sind."@de ;
+         rdfs:label "Datafield element instance"@en ,
+                    "Datenfeldelementinstanz"@de .
+
+
+###  https://w3id.org/gerps/ontology/process/GERPSE006
+gpp:GPP_0000003 rdf:type owl:Class .
+
+
+###  https://w3id.org/gerps/ontology/process/GERPSE017
+gpp:GPP_0000008 rdf:type owl:Class .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
