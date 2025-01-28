@@ -23,7 +23,7 @@
                                                                      "Jonas Hoyer" ,
                                                                      "Leila Feddoul" ,
                                                                      "Maximilian Enderling" ,
-                                                                     "Maximilian Raupach" ;
+                                                                     "Maximilians Raupach" ;
                                                    terms:creator "openDVA" ;
                                                    terms:license <http://creativecommons.org/licenses/by/4.0/> ;
                                                    terms:modified "20 Dec, 2024" ;
