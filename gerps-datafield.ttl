@@ -32,7 +32,7 @@
                                                    vann:preferredNamespacePrefix "god"@en ;
                                                    vann:preferredNamespaceUri "https://w3id.org/gerps/ontology/datafield" ;
                                                    owl:priorVersion <https://w3id.org/gerps/ontology/datafield/0.9/> ;
-                                                   owl:versionInfo "1.0" ;
+                                                   owl:versionInfo "1.1" ;
                                                    schema:citation "Cite this vocabulary as: openDVA, GerPS-Datafield"@en ,
                                                                    "Zitieren Sie dieses Vokabular als: openDVA, GerPS-Datafield"@de ;
                                                    schema:image "img.png" ;
