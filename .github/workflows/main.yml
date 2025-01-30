@@ -2,7 +2,7 @@ name: Deploy all ontology versions on pages
 on:
   push:
     branches:
-      - main
+      - master
 jobs:
   deploy:                                         # a free machine-readable name for this job
     runs-on: ubuntu-latest                        # specify the base operating system
