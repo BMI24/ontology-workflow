@@ -1,4 +1,16 @@
 FROM ghcr.io/dgarijo/widoco:v1.4.25
 
-CMD ["-ontFile in/gerps-datafield.ttl -import in/gerps-datafield.ttl -outFolder out -rewriteAll -getOntologyMetadata -lang de-en -saveConfig out/config -webVowl"]
+
+USER root
+run apt-get update
+COPY requirements.txt .
+RUN apt install -y python3 python3-pip git
+RUN pip install -r requirements.txt
+USER widoco
+ADD . .
+
+
+
+ENTRYPOINT "python3" "/usr/local/widoco/compile-onto.py"
+CMD ""
 
