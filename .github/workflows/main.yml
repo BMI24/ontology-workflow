@@ -8,8 +8,14 @@ permissions:
   contents: read
   pages: write
   id-token: write
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 jobs:
   deploy:                                         # a free machine-readable name for this job
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest                        # specify the base operating system
     steps:
       - name: Checkout repo content               # fetch the contents of the repository
