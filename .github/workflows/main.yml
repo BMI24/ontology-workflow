@@ -4,6 +4,10 @@ on:
     branches:
       - master
   workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 jobs:
   deploy:                                         # a free machine-readable name for this job
     runs-on: ubuntu-latest                        # specify the base operating system
