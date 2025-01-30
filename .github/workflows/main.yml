@@ -15,7 +15,7 @@ jobs:
       - name: Checkout repo content               # fetch the contents of the repository
         uses: actions/checkout@v4
         with:
-          fetch-tags: true
+          fetch-depth: 0
       - name: Prepare build environment
         run: |                                    # multiple Bash commands follow
           mkdir -p build
