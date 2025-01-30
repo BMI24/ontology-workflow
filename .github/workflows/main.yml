@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - master
+  workflow_dispatch:
 jobs:
   deploy:                                         # a free machine-readable name for this job
     runs-on: ubuntu-latest                        # specify the base operating system
@@ -15,8 +16,13 @@ jobs:
           touch build/.nojekyll
       - name: Run widoco
         uses: docker://ghcr.io/fusion-jena/ontology-docs-deployer:main
-      - name: Deploy on github pages              # Use a third-party plugin to upload the content
-        uses: JamesIves/github-pages-deploy-action@4.1.0
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          branch: gh-pages
-          folder: build
+          # Upload entire repository
+          path: '.'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
